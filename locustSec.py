@@ -1,6 +1,6 @@
 # coding=utf-8
 import requests
-from flask import Flask, make_response, jsonify, render_template, request
+from flask import Flask, make_response, jsonify, render_template, request,redirect,url_for
 from locust import HttpLocust, TaskSet, task, web
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
@@ -56,8 +56,9 @@ def addTestDemo():
 
 @web.app.route("/delete/<id>")
 def delete(id=None):
-    print type(id)
-    return jsonify(id)
+    del aim[int(id)]
+    del ways[int(id)]
+    return redirect(url_for("indexAdd"))
 
 
 def translateinfo(info):
