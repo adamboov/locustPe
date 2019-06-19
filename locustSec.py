@@ -1,6 +1,6 @@
 # coding=utf-8
 import requests
-from flask import Flask, make_response, jsonify, render_template, request,redirect,url_for
+from flask import Flask, make_response, jsonify, render_template, request, redirect, url_for
 from locust import HttpLocust, TaskSet, task, web
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
@@ -56,8 +56,8 @@ def addTestDemo():
 
 @web.app.route("/delete/<id>")
 def delete(id=None):
-    del aim[int(id)]
-    del ways[int(id)]
+    del aim[int(id)]  # 实际运行的数据数组
+    del ways[int(id)]  # 显示的数据数组
     return redirect(url_for("indexAdd"))
 
 
@@ -114,6 +114,7 @@ class MyHttpLocust(HttpLocust):
     max_wait = 5000  # 单位为毫秒
 
 
+# 这样使用的是个人修改的locust而不是系统的locust
 if __name__ == "__main__":
     import os
 
