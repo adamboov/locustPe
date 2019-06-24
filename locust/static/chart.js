@@ -1,4 +1,4 @@
-(function() {
+(function () {
     class LocustLineChart {
         /**
          * lines should be an array of line names
@@ -13,7 +13,7 @@
             this.dates = [];
 
             var seriesData = [];
-            for (var i=0; i<lines.length; i++) {
+            for (var i = 0; i < lines.length; i++) {
                 seriesData.push({
                     name: lines[i],
                     type: 'line',
@@ -36,7 +36,7 @@
                     formatter: function (params) {
                         if (!!params && params.length > 0 && !!params[0].value) {
                             var str = params[0].name;
-                            for (var i=0; i<params.length; i++) {
+                            for (var i = 0; i < params.length; i++) {
                                 var param = params[i];
                                 str += '<br><span style="color:' + param.color + ';">' + param.seriesName + ': ' + param.data + '</span>';
                             }
@@ -49,8 +49,13 @@
                         animation: true
                     }
                 },
-                legend:{
-                    data:this.lines
+                legend: {
+                    data: this.lines
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
                 },
                 xAxis: {
                     type: 'category',
@@ -77,14 +82,14 @@
                     },
                 },
                 series: seriesData,
-                grid: {x:60, y:70, x2:40, y2:40},
+                grid: {x: 60, y: 70, x2: 40, y2: 40},
             })
         }
 
         addValue(values) {
             this.dates.push(new Date().toLocaleTimeString());
             var seriesData = [];
-            for (var i=0; i<values.length; i++) {
+            for (var i = 0; i < values.length; i++) {
                 var value = Math.round(values[i] * 100) / 100;
                 this.data[i].push(value);
                 seriesData.push({data: this.data[i]});
@@ -101,5 +106,6 @@
             this.chart.resize();
         }
     }
+
     window.LocustLineChart = LocustLineChart;
 })();

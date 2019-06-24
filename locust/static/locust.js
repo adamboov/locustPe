@@ -192,7 +192,7 @@ function updateStats() {
         setTimeout(updateStats, 2000);
     });
 }
-updateStats();
+// updateStats();
 
 function updateExceptions() {
     $.get('./exceptions', function (data) {
@@ -201,4 +201,4 @@ function updateExceptions() {
         setTimeout(updateExceptions, 5000);
     });
 }
-updateExceptions();
+// updateExceptions();
